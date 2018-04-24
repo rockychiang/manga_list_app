@@ -6,7 +6,6 @@ class CreateMangas < ActiveRecord::Migration[5.2]
       t.integer :volumes
       t.integer :chapters
       t.integer :author_id
-      t.integer :publisher_id
       t.date :start_date
       t.date :end_date
 

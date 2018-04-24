@@ -13,16 +13,11 @@ RSpec.describe Collection, :type => :model do
     Author.create(name: "Oda, Eiichiro")
   }
 
-  let(:jump) {
-    Publisher.create(name: "Weekly Shounen Jump")
-  }
-
   let(:onepiece) {
     Manga.create(
       title: "One Piece",
       status: "On Going",
       author_id: oda.id,
-      publisher_id: jump.id,
       start_date: 1997-07-22
     )
   }

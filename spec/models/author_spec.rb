@@ -6,12 +6,16 @@ RSpec.describe Publisher, type: :model do
     Author.create(name: "Oda, Eiichiro")
   }
 
-  let(:watsuki) {
-    Author.create(name: "Watsuki, Nobuhiro")
-  }
-
-  let(:jump) {
-    Publisher.create(name: "Weekly Shounen Jump")
+  let(:wanted) {
+    Manga.create(
+      title: "Wanted!",
+      status: "Finished",
+      volumes: 1,
+      chapters: 5,
+      author_id: oda.id,
+      start_date: 1996-09-10,
+      end_date: 1996-09-10
+    )
   }
 
   let(:onepiece) {
@@ -19,22 +23,17 @@ RSpec.describe Publisher, type: :model do
       title: "One Piece",
       status: "On Going",
       author_id: oda.id,
-      publisher_id: jump.id,
       start_date: 1997-07-22
     )
   }
 
-  let(:kenshin) {
-    Manga.create(
-      title: "Rurouni Kenshin",
-      status: "Finished",
-      volumes: 28,
-      chapters: 259,
-      author_id: watsuki.id,
-      publisher_id: jump.id,
-      start_date: 1994-04-12,
-      end_date: 1999-09-21
-    )
-  }
+    it "is valid with a name" do
+      expect(oda).to be_valid
+    end
+
+    it "has many manga" do
+      expect(oda.mangas.first).to eq(wanted)
+      expect(oda.mangas.last).to eq(onepiece)
+    end
 
 end
