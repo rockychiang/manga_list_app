@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
 
   let(:admin) {
     User.create(
-      name: "Me",
+      name: "Nami",
       email: "admin@manga.com",
       password: "password",
       admin: true
