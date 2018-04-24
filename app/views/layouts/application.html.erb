@@ -13,7 +13,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top navbar-default" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <%= link_to "Manga List", root_path, class: "navbar-brand" %>
+          <%= link_to "ML", root_path, class: "navbar-brand" %>
+        </div>
+        <div class="navbar-nav">
+          <%= link_to "Manga List", manga_index_path, class: "navbar-brand" %>
+          <%= link_to "Author List", authors_path, class: "navbar-brand" %>
+        </div>
+        <div class="navbar-nav navbar-right">
           <%= link_to "Sign Up", register_path, class: "navbar-brand" %>
           <%= link_to "Log In", login_path, class: "navbar-brand" %>
         </div>
