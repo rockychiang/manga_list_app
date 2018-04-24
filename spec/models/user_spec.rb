@@ -53,4 +53,34 @@ RSpec.describe User, type: :model do
     )
   }
 
+
+    it "is valid with a name, email, and password" do
+      expect(user).to be_valid
+    end
+
+    it "is not valid without a password" do
+      expect(User.new(name: "Name")).not_to be_valid
+    end
+
+    it "is valid with an admin boolean" do
+      expect(admin).to be_valid
+    end
+
+    it "defaults to admin => false" do
+      expect(user.admin).to eq(false)
+    end
+
+    it "has many collections" do
+      first_collection = Collection.create(:user_id => user.id, :manga_id => kenshin.id)
+      second_collection = Collection.create(:user_id => user.id, :manga_id => onepiece.id)
+      expect(user.collections.first).to eq(first_collection)
+      expect(user.collections.last).to eq(second_collection)
+    end
+
+    it "has many manga through collections" do
+      user.mangas << [kenshin, onepiece]
+      expect(user.mangas.first).to eq(kenshin)
+      expect(user.mangas.last).to eq(onepiece)
+    end
+
 end
