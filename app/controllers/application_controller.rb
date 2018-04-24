@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def require_login
+    redirect_to login_path unless logged_in?
+  end
+
+  def require_admin
+    redirect_to manga_index_path unless current_user.admin
+  end
+
 end
