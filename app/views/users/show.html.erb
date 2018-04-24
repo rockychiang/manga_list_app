@@ -4,15 +4,19 @@
   <tr class="info">
     <th><strong>Title</strong></th>
     <th><strong>Rating</strong></th>
-    <th><strong>Your Rating</strong></th>
+    <th><strong>Status</strong></th>
     <th></th>
   </tr>
   <% @user.collections.each do |collection| %>
     <tr>
       <td><%= link_to collection.manga.title, user_collection_path(@user, collection) %></td>
-      <td></td>
+      <td><%=  %></td>
       <td><%= collection.status %></td>
-      <td><%= collection.rating %></td>
+      <td>
+        <% if @user == current_user %>
+          <%= button_to "Delete", user_collection_path(@user, collection), method: :delete, class: "btn btn-primary" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
