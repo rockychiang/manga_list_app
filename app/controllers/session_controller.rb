@@ -14,14 +14,14 @@ class SessionController < ApplicationController
   end
 
   def facebook
-    @user = User.find_or_create_by(email: auth['info']['email']) do |u|
+    user = User.find_or_create_by(email: auth['info']['email']) do |u|
+      u.facebook_uid = auth['uid']
       u.name = auth['info']['name'] unless u.name
       u.password = SecureRandom.hex unless u.password_digest
     end
 
-    session[:user_id] = @user.id
-
-    redirect_to user_path(@user)
+    session[:user_id] = user.id
+    redirect_to user_path(user)
   end
 
   def destroy
