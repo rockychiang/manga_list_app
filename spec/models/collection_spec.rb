@@ -28,4 +28,16 @@ RSpec.describe Collection, :type => :model do
       manga_id: onepiece.id
     )
   }
+
+  it "is valid with a user_id and a manga_id" do
+    expect(collection).to be_valid
+  end
+
+  it "belongs to one user" do
+    expect(collection.user).to eq(user)
+  end
+
+  it "belongs to one manga" do
+    expect(collection.manga).to eq(onepiece)
+  end
 end
