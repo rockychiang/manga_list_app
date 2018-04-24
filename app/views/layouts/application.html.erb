@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "Manga List", root_path, class: "navbar-brand" %>
+          <%= link_to "Sign Up", register_path, class: "navbar-brand" %>
+          <%= link_to "Log In", login_path, class: "navbar-brand" %>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
