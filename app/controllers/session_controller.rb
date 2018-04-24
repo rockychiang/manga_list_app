@@ -15,7 +15,8 @@ class SessionController < ApplicationController
 
   def facebook
     @user = User.find_or_create_by(email: auth['info']['email']) do |u|
-      u.name = auth['info']['name']
+      u.name = auth['info']['name'] unless u.name
+      u.password = SecureRandom.hex unless u.password_digest
     end
 
     session[:user_id] = @user.id
