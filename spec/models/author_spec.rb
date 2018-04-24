@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Publisher, type: :model do
+RSpec.describe Author, type: :model do
 
   let(:oda) {
     Author.create(name: "Oda, Eiichiro")
@@ -13,8 +13,8 @@ RSpec.describe Publisher, type: :model do
       volumes: 1,
       chapters: 5,
       author_id: oda.id,
-      start_date: 1996-09-10,
-      end_date: 1996-09-10
+      start_date: 19960910,
+      end_date: 19960910
     )
   }
 
@@ -23,7 +23,7 @@ RSpec.describe Publisher, type: :model do
       title: "One Piece",
       status: "On Going",
       author_id: oda.id,
-      start_date: 1997-07-22
+      start_date: 19970722
     )
   }
 

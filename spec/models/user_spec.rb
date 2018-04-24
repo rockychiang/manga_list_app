@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
       title: "One Piece",
       status: "On Going",
       author_id: oda.id,
-      start_date: 1997-07-22
+      start_date: 19970722
     )
   }
 
@@ -42,8 +42,8 @@ RSpec.describe User, type: :model do
       volumes: 28,
       chapters: 259,
       author_id: watsuki.id,
-      start_date: 1994-04-12,
-      end_date: 1999-09-21
+      start_date: 19940412,
+      end_date: 19990921
     )
   }
 

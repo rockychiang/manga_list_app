@@ -18,7 +18,7 @@ RSpec.describe Collection, :type => :model do
       title: "One Piece",
       status: "On Going",
       author_id: oda.id,
-      start_date: 1997-07-22
+      start_date: 19970722
     )
   }
 
