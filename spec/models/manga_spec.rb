@@ -47,20 +47,6 @@ RSpec.describe Manga, :type => :model do
     )
   }
 
-  let(:user_collection) {
-    Collection.create(
-      user_id: user.id,
-      manga_id: onepiece.id
-    )
-  }
-
-  let(:admin_collection) {
-    Collection.create(
-      user_id: admin.id,
-      manga_id: onepiece.id
-    )
-  }
-
     it "On Going Manga is valid with a title, status, and start date" do
       expect(onepiece).to be_valid
     end
@@ -70,11 +56,14 @@ RSpec.describe Manga, :type => :model do
     end
 
     it "has many collections" do
+      user_collection = Collection.create(user_id: user.id, manga_id: onepiece.id)
+      admin_collection = Collection.create(user_id: admin.id, manga_id: onepiece.id)
       expect(onepiece.collections.first).to eq(user_collection)
       expect(onepiece.collections.last).to eq(admin_collection)
     end
 
     it "has many users through collections" do
+      onepiece.users << [user, admin]
       expect(onepiece.users.first).to eq(user)
       expect(onepiece.users.last).to eq(admin)
     end

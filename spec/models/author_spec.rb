@@ -12,7 +12,6 @@ RSpec.describe Author, type: :model do
       status: "Finished",
       volumes: 1,
       chapters: 5,
-      author_id: oda.id,
       start_date: 19960910,
       end_date: 19960910
     )
@@ -22,7 +21,6 @@ RSpec.describe Author, type: :model do
     Manga.create(
       title: "One Piece",
       status: "On Going",
-      author_id: oda.id,
       start_date: 19970722
     )
   }
@@ -32,6 +30,7 @@ RSpec.describe Author, type: :model do
     end
 
     it "has many manga" do
+      oda.mangas << [wanted, onepiece]
       expect(oda.mangas.first).to eq(wanted)
       expect(oda.mangas.last).to eq(onepiece)
     end
