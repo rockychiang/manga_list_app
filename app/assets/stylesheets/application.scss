@@ -33,3 +33,7 @@ body {
   position: absolute;
   height: 10px;
 }
+
+.field_with_errors input {
+  border: 1px red solid;
+}
