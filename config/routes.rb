@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/sessions' => 'session#create'
   delete '/logout' => 'session#destroy'
   get '/register' => 'users#new'
+  get '/auth/facebook/callback' => 'session#facebook'
 
   resources :users, only: [:create, :show] do
     resources :collections, except: [:index, :new, :edit]
