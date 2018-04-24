@@ -53,7 +53,6 @@ RSpec.describe User, type: :model do
     )
   }
 
-
     it "is valid with a name, email, and password" do
       expect(user).to be_valid
     end

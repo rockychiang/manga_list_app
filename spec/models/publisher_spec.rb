@@ -37,4 +37,18 @@ RSpec.describe Publisher, type: :model do
     )
   }
 
+    it "is valid with a name" do
+      expect(jump).to be_valid
+    end
+
+    it "has many manga" do
+      expect(jump.mangas.first).to eq(onepiece)
+      expect(jump.mangas.last).to eq(kenshin)
+    end
+
+    it "has many authors through mangas" do
+      expect(jump.authors.first).to eq(oda)
+      expect(jump.authors.last).to eq(watsuki)
+    end
+
 end
