@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :name,
     presence: true,
     uniqueness: true,
-    format: {with: /\A[a-zA-Z0-9_-]+\z/, message: "only letters, numbers, dash, and underscore are allowed"},
+    format: {with: /\A[a-zA-Z0-9_-]+\z/, message: "can only be a combinations of letters, numbers, dash, or underscore"},
     length: {minimum: 3}
   validates :email, uniqueness: true, presence: true
   validates :password, length: {in: 6..20}
