@@ -8,6 +8,6 @@ class User < ApplicationRecord
     format: {with: /\A[a-zA-Z0-9_-]+\z/, message: "only letters, numbers, dash, and underscore are allowed"},
     length: {minimum: 3}
   validates :email, uniqueness: true, presence: true
-  validates :password, length: {in: 6..20, wrong_length: "cannot be shorter than 6 or longer than 20 characters"}
+  validates :password, length: {in: 6..20}
 
 end
