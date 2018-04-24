@@ -1,3 +1,9 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <p><%= @user.errors.full_messages.join(". ") %>.</p>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
