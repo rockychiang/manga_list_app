@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   post '/sessions' => 'session#create'
   delete '/logout' => 'session#destroy'
   get '/register' => 'users#new'
-  
+
   resources :users, only: [:create, :show]
 
   resources :authors, only: [:index, :show]
+  resources :manga, except: :destroy
 end
