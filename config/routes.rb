@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   delete '/logout' => 'session#destroy'
   get '/register' => 'users#new'
 
-  resources :users, only: [:create, :show]
+  resources :users, only: [:create, :show] do
+    resources :collections, except: [:index, :new, :edit]
+  end
 
   resources :authors, only: [:index, :show]
   resources :manga, except: :destroy
