@@ -24,7 +24,7 @@ class CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.require(:collection).permit(:user_id, :manga_id, :status)
+    params.require(:collection).permit(:user_id, :manga_id, :status, :last_read)
   end
 
   def owner?
