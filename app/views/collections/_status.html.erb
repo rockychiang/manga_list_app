@@ -1,3 +1,7 @@
-<%= form_for collection, url: user_collection_path(user, collection) do |f| %>
-  <%= f.select :status, ["Never Read", "Reading", "Finished Reading"], {}, {value: collection.status, class: "form-control", onchange: 'this.form.submit();'} %>
+<% if user == current_user %>
+  <%= form_for collection, url: user_collection_path(user, collection) do |f| %>
+    <%= f.select :status, ["Never Read", "Reading", "Finished Reading"], {}, {value: collection.status, class: "form-control", onchange: 'this.form.submit();'} %>
+  <% end %>
+<% else %>
+  <%= collection.status %>
 <% end %>
