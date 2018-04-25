@@ -1,2 +1,7 @@
-<h1>Authors#show</h1>
-<p>Find me in app/views/authors/show.html.erb</p>
+<div class="row">
+  <div class="col-sm-12">
+    <h2><%= @author.name %></h2>
+  </div>
+</div>
+
+<%= render 'manga/list_manga', mangas: @author.mangas %>

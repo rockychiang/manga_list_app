@@ -4,15 +4,4 @@
   </div>
 </div>
 
-<div class="row">
-  <% @manga.each do |manga| %>
-    <div class="col-sm-4 center">
-      <div class="bordered">
-        <h3><%= link_to manga.title, manga_path(manga) %></h3>
-        <p>by <%= link_to manga.author.name, author_path(manga.author) %></p>
-        <p>Status: <%= manga.status %></p>
-        <%= render 'add_button', manga: manga %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render 'manga/list_manga', mangas: @manga %>
