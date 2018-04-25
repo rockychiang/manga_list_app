@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-8">
     <% if user == current_user %>
-      <%= form_for collection, url: user_collection_path(user, collection) do |f| %>
+      <%= form_for [user, collection] do |f| %>
         <%= f.select :status, ["Never Read", "Reading", "Finished"], {}, {value: collection.status, class: "form-control", onchange: 'this.form.submit();'} %>
       <% end %>
     <% else %>
