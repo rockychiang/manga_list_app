@@ -11,6 +11,9 @@
         <h3><%= link_to manga.title, manga_path(manga) %></h3>
         <p>by <%= link_to manga.author.name, author_path(manga.author) %></p>
         <p>Status: <%= manga.status %></p>
+        <% if logged_in? %>
+          <%= button_to "Add to Collection", user_collections_path(current_user), class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   <% end %>
