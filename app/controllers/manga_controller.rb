@@ -6,14 +6,14 @@ class MangaController < ApplicationController
     @manga = Manga.all
   end
 
+  def show
+    @collection = @manga.collections.find_or_initialize_by(user_id: current_user.id) if logged_in?
+  end
+
   def new
   end
 
   def create
-  end
-
-  def show
-    @collection = @manga.collections.find_or_initialize_by(user_id: current_user.id) if logged_in?
   end
 
   def edit
