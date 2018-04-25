@@ -2,7 +2,9 @@ class CollectionsController < ApplicationController
   before_action :owner?
 
   def create
-    raise params.inspect
+    session[:return_to] ||= request.referer
+    Collection.create(collection_params)
+    redirect_to session.delete(:return_to)
   end
 
   def show
@@ -18,6 +20,10 @@ class CollectionsController < ApplicationController
   end
 
   private
+
+  def collection_params
+    params.require(:collection).permit(:user_id, :manga_id)
+  end
 
   def owner?
     user = User.find(params[:user_id])
