@@ -12,7 +12,7 @@
         <p>by <%= link_to manga.author.name, author_path(manga.author) %></p>
         <p>Status: <%= manga.status %></p>
         <% if logged_in? %>
-          <%= button_to "Add to Collection", user_collections_path(current_user), class: "btn btn-primary" %>
+          <%= render 'add_button' %>
         <% end %>
       </div>
     </div>

@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   before_action :owner?
 
   def create
+    raise params.inspect
   end
 
   def show

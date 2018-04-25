@@ -1,0 +1,3 @@
+<% if logged_in? %>
+  <%= button_to "Add to Collection", user_collections_path(current_user), class: "btn btn-primary" %>
+<% end %>
