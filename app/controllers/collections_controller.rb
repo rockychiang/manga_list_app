@@ -6,9 +6,6 @@ class CollectionsController < ApplicationController
     redirect_to request.referer
   end
 
-  def show
-  end
-
   def update
     collection = Collection.find(params[:id])
     collection.update(collection_params)

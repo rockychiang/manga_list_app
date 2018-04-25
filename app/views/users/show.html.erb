@@ -11,7 +11,7 @@
   </tr>
   <% @user.collections.each do |collection| %>
     <tr>
-      <td><%= link_to collection.manga.title, user_collection_path(@user, collection) %></td>
+      <td><%= link_to collection.manga.title, manga_path(collection.manga) %></td>
       <td><%= average_rating %></td>
       <td><%= render '/collections/status', user: @user, collection: collection %></td>
       <% if @user == current_user %>
