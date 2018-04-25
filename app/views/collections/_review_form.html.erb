@@ -1,22 +1,26 @@
 <div class="row">
-  <div class="col-sm-2">
-    <%= user.name %>
+  <div class="col-sm-12">
+    <h3>Review this Manga</h3>
+    <%= form_for [user, collection] do |f| %>
+
+      <% if !collection.id %>
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :manga_id %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :rating %>
+        <%= f.select :rating, [1, 2, 3, 4, 5], class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_area :review, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      </div>
+
+    <% end %>
   </div>
 </div>
-
-<%= form_for collection, url: user_collection_path(user, collection) do |f| %>
-
-  <div class="form-group">
-    <%= f.label :rating %>
-    <%= f.select :rating, [1, 2, 3, 4, 5], class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.text_area :review, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Drop Mic!", class: "btn btn-primary" %>
-  </div>
-
-<% end %>

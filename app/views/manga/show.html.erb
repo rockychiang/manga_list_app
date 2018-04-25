@@ -5,9 +5,15 @@
 </div>
 
 <div class="row">
+
   <div class="col-sm-9">
+    <%= render '/collections/review_form', user: current_user, collection: @collection %>
+    <% @manga.collections.each do |collection| %>
+      <%= collection.review %>
+    <% end %>
 
   </div>
+
   <div class="col-sm-3">
     <p>
       <strong>Rating</strong><br />
@@ -44,5 +50,6 @@
     <p class="center">
       <%= render '/collections/add_button', manga: @manga %>
     </p>
+
   </div>
 </div>

@@ -11,6 +11,7 @@ class MangaController < ApplicationController
 
   def show
     @manga = Manga.find(params[:id])
+    @collection = @manga.collections.find_or_initialize_by(user_id: current_user.id)
   end
 
   def edit
