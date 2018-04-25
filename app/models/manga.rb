@@ -5,11 +5,6 @@ class Manga < ApplicationRecord
   validates :title, presence: true
   accepts_nested_attributes_for :author
 
-  def author_attributes=(name)
-    author = Author.find_or_create_by(name: name)
-    self.author = author
-  end
-
   def years_active
     started = start_date.to_s.to_date.strftime("%b %e, %Y")
     !!end_date ? ended = end_date.to_s.to_date.strftime("%b %e, %Y") : ended = "Present"

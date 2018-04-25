@@ -15,7 +15,12 @@ class MangaController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @manga = Manga.new(manga_params)
+    if @manga.save
+      redirect_to manga_path(@manga)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -27,7 +32,7 @@ class MangaController < ApplicationController
   private
 
   def manga_params
-    params.require(:manga).permit(:title, :status, :volumes, :chapters, :start_date, :end_date, :author_attributes)
+    params.require(:manga).permit(:title, :status, :volumes, :chapters, :start_date, :end_date, author_attributes: :name)
   end
 
   def set_manga
