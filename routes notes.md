@@ -10,10 +10,10 @@
  [.]  GET    /users/:id(.:format)                        users#show           require_login
  [X]  POST   /users/:user_id/collections(.:format)       collections#create   current_user
  [ ]  GET    /users/:user_id/collections/:id(.:format)   collections#show     current_user
- [ ]  PATCH  /users/:user_id/collections/:id(.:format)   collections#update   current_user
- [ ]  PUT    /users/:user_id/collections/:id(.:format)   collections#update   current_user
+ [.]  PATCH  /users/:user_id/collections/:id(.:format)   collections#update   current_user
+ [.]  PUT    /users/:user_id/collections/:id(.:format)   collections#update   current_user
  [X]  DELETE /users/:user_id/collections/:id(.:format)   collections#destroy  current_user
- [ ]  GET    /authors(.:format)                          authors#index        public
+ [X]  GET    /authors(.:format)                          authors#index        public
  [X]  GET    /authors/:id(.:format)                      authors#show         public
  [X]  GET    /manga(.:format)                            manga#index          public
  [ ]  POST   /manga(.:format)                            manga#create         require_admin

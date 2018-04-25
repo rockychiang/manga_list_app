@@ -11,7 +11,7 @@
     <tr>
       <td><%= link_to collection.manga.title, user_collection_path(@user, collection) %></td>
       <td><%=  %></td>
-      <td><%= collection.status %></td>
+      <td><%= render '/collections/status.html.erb', collection: collection %></td>
       <td><%= button_to "Delete", user_collection_path(@user, collection), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} if @user == current_user %></td>
     </tr>
   <% end %>

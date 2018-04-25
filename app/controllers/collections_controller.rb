@@ -11,6 +11,10 @@ class CollectionsController < ApplicationController
   end
 
   def update
+    session[:return_to] ||= request.referer
+    collection = Collection.find(params[:id])
+    collection.update(collection_params)
+    redirect_to session.delete(:return_to)
   end
 
   def destroy
@@ -22,7 +26,7 @@ class CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.require(:collection).permit(:user_id, :manga_id)
+    params.require(:collection).permit(:user_id, :manga_id, :status)
   end
 
   def owner?
