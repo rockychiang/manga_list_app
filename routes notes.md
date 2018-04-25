@@ -9,8 +9,8 @@
  [X]  POST   /users(.:format)                            users#create         public
  [X]  GET    /users/:id(.:format)                        users#show           require_login
  [X]  POST   /users/:user_id/collections(.:format)       collections#create   current_user
- [.]  PATCH  /users/:user_id/collections/:id(.:format)   collections#update   current_user
- [.]  PUT    /users/:user_id/collections/:id(.:format)   collections#update   current_user
+ [X]  PATCH  /users/:user_id/collections/:id(.:format)   collections#update   current_user
+ [X]  PUT    /users/:user_id/collections/:id(.:format)   collections#update   current_user
  [X]  DELETE /users/:user_id/collections/:id(.:format)   collections#destroy  current_user
  [X]  GET    /authors(.:format)                          authors#index        public
  [X]  GET    /authors/:id(.:format)                      authors#show         public
@@ -18,6 +18,6 @@
  [ ]  POST   /manga(.:format)                            manga#create         require_admin
  [ ]  GET    /manga/new(.:format)                        manga#new            require_admin
  [ ]  GET    /manga/:id/edit(.:format)                   manga#edit           require_admin
- [.]  GET    /manga/:id(.:format)                        manga#show           public
+ [X]  GET    /manga/:id(.:format)                        manga#show           public
  [ ]  PATCH  /manga/:id(.:format)                        manga#update         require_admin
  [ ]  PUT    /manga/:id(.:format)                        manga#update         require_admin
