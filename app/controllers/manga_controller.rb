@@ -10,6 +10,7 @@ class MangaController < ApplicationController
   end
 
   def show
+    @manga = Manga.find(params[:id])
   end
 
   def edit

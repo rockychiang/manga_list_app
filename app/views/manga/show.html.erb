@@ -1,2 +1,44 @@
-<h1>Manga#show</h1>
-<p>Find me in app/views/manga/show.html.erb</p>
+<div class="row">
+  <div class="col-sm-12">
+    <h2><%= @manga.title %></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
+
+  </div>
+  <div class="col-sm-3">
+    <p>
+      <strong>Rating</strong><br />
+      <%= %>
+    </p>
+
+    <p>
+      <strong>Author</strong><br />
+      <%= link_to @manga.author.name, author_path(@manga.author) %>
+    </p>
+
+    <p>
+      <strong>Status</strong><br />
+      <%= @manga.status %>
+    </p>
+
+    <% if @manga.status == "Completed" %>
+      <p>
+        <strong>Volumes</strong><br />
+        <%= @manga.volumes %>
+      </p>
+
+      <p>
+        <strong>Chapters</strong><br />
+        <%= @manga.chapters %>
+      </p>
+    <% end %>
+
+    <p>
+      <strong>Years Active</strong><br />
+      <%=  %>
+    </p>
+  </div>
+</div>
