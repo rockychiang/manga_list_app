@@ -8,8 +8,8 @@
     <%= form_tag '/sessions' do %>
 
       <div class="form-group">
-        <%= label_tag :name, "Name: " %>
-        <%= text_field_tag :name, nil, class: "form-control" %>
+        <%= label_tag :email, "Email: " %>
+        <%= email_field_tag :email, nil, class: "form-control" %>
       </div>
 
       <div class="form-group">
