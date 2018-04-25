@@ -1,0 +1,12 @@
+<div class="row">
+  <% mangas.each do |manga| %>
+    <div class="col-sm-4 center">
+      <div class="bordered">
+        <h3><%= link_to manga.title, manga_path(manga) %></h3>
+        <p>by <%= link_to manga.author.name, author_path(manga.author) %></p>
+        <p>Status: <%= manga.status %></p>
+        <%= render '/manga/add_button', manga: manga %>
+      </div>
+    </div>
+  <% end %>
+</div>

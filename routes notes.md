@@ -14,7 +14,7 @@
  [ ]  PUT    /users/:user_id/collections/:id(.:format)   collections#update   current_user
  [X]  DELETE /users/:user_id/collections/:id(.:format)   collections#destroy  current_user
  [ ]  GET    /authors(.:format)                          authors#index        public
- [ ]  GET    /authors/:id(.:format)                      authors#show         public
+ [X]  GET    /authors/:id(.:format)                      authors#show         public
  [X]  GET    /manga(.:format)                            manga#index          public
  [ ]  POST   /manga(.:format)                            manga#create         require_admin
  [ ]  GET    /manga/new(.:format)                        manga#new            require_admin
