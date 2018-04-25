@@ -11,9 +11,11 @@ class MangaController < ApplicationController
   end
 
   def new
+    @manga = Manga.new
   end
 
   def create
+    raise params.inspect
   end
 
   def edit
@@ -23,6 +25,10 @@ class MangaController < ApplicationController
   end
 
   private
+
+  def manga_params
+    params.require(:manga).permit(:title, :status, :volumes, :chapters, :start_date, :end_date, :author_attributes)
+  end
 
   def set_manga
       @manga = Manga.find(params[:id])

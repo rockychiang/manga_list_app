@@ -1,4 +1,4 @@
-<%= form_for manga do |f| %>
+<%= form_for manga, url: manga_index_path do |f| %>
 
   <div class="form-group">
     <%= f.label :title %>
@@ -11,18 +11,23 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :volumes, "Volumes (Leave blank if 'On Going' or 'On Hiatus')" %>
-    <%= f.text_field :volumes, class: "form-control" %>
+    <%= f.label :volumes %>
+    <%= f.text_field :volumes, class: "form-control", placeholder: "Leave blank if status is 'On Going' or 'On Hiatus'" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :chapters, "Chapters (Leave blank if 'On Going' or 'On Hiatus')" %>
-    <%= f.text_field :chapters, class: "form-control" %>
+    <%= f.label :chapters %>
+    <%= f.text_field :chapters, class: "form-control", placeholder: "Leave blank if status is 'On Going' or 'On Hiatus'"  %>
   </div>
 
   <div class="form-group">
     <%= f.label :author %>
-    <%= f.text_field :author, class: "form-control" %>
+    <%= f.text_field :author, list: "authors_autocomplete", class: "form-control" %>
+    <datalist id="authors_autocomplete">
+      <% Author.all.each do |author| %>
+        <option value="<%= author.name %>">
+      <% end %>
+    </datalist>
   </div>
 
   <div class="form-group">
