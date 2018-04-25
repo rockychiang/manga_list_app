@@ -2,19 +2,17 @@ class CollectionsController < ApplicationController
   before_action :owner?
 
   def create
-    session[:return_to] ||= request.referer
     Collection.create(collection_params)
-    redirect_to session.delete(:return_to)
+    redirect_to request.referer
   end
 
   def show
   end
 
   def update
-    session[:return_to] ||= request.referer
     collection = Collection.find(params[:id])
     collection.update(collection_params)
-    redirect_to session.delete(:return_to)
+    redirect_to request.referer
   end
 
   def destroy
@@ -30,7 +28,6 @@ class CollectionsController < ApplicationController
   end
 
   def owner?
-    user = User.find(params[:user_id])
-    redirect_to user_path(user) unless current_user == user
+    redirect_to request.referer unless current_user.id == params[:user_id].to_i
   end
 end

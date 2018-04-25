@@ -11,8 +11,8 @@
     <tr>
       <td><%= link_to collection.manga.title, user_collection_path(@user, collection) %></td>
       <td><%=  %></td>
-      <td><%= render '/collections/status', collection: collection %></td>
-      <td><%= render '/collections/delete_button', collection: collection if @user == current_user %></td>
+      <td><%= render '/collections/status', user: @user, collection: collection %></td>
+      <td><%= render '/collections/delete_button', user: @user, collection: collection if @user == current_user %></td>
     </tr>
   <% end %>
 </table>
