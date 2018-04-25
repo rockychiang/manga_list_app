@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
-  before_action :owner?
+  before_action :require_login
+  before_action :owner?, only: [:update, :destroy]
 
   def create
     Collection.create(collection_params)
@@ -7,14 +8,12 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    collection = Collection.find(params[:id])
-    collection.update(collection_params)
+    @collection.update(collection_params)
     redirect_to request.referer
   end
 
   def destroy
-    collection = Collection.find(params[:id])
-    collection.delete
+    @collection.delete
     redirect_to user_path(current_user)
   end
 
@@ -25,6 +24,7 @@ class CollectionsController < ApplicationController
   end
 
   def owner?
-    redirect_to request.referer unless current_user.id == params[:user_id].to_i
+    @collection = Collection.find(params[:id])
+    redirect_to request.referer unless current_user.id == @collection.user_id
   end
 end
