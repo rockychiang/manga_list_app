@@ -1,3 +1,7 @@
 <% if logged_in? %>
-  <%= button_to "Add to Collection", user_collections_path(current_user), class: "btn btn-primary" %>
+  <%= form_for current_user.collections.build, url: user_collections_path(current_user) do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :manga_id, value: manga.id %>
+    <%= f.submit "Add to Collection", class: "btn btn-primary" %>
+  <% end %>
 <% end %>

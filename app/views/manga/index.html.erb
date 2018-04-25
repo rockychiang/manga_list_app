@@ -11,9 +11,7 @@
         <h3><%= link_to manga.title, manga_path(manga) %></h3>
         <p>by <%= link_to manga.author.name, author_path(manga.author) %></p>
         <p>Status: <%= manga.status %></p>
-        <% if logged_in? %>
-          <%= render 'add_button' %>
-        <% end %>
+        <%= render 'add_button', manga: manga %>
       </div>
     </div>
   <% end %>
