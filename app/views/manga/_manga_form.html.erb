@@ -25,13 +25,16 @@
 
       <div class="form-group">
         <%= f.fields_for :author do |i| %>
+
           <%= i.label :name, "Author Name" %>
           <%= i.text_field :name, list: "authors_autocomplete", class: "form-control", placeholder: "Author's Name" %>
+
           <datalist id="authors_autocomplete">
             <% Author.all.each do |a| %>
               <option value="<%= a.name %>"></option>
             <% end %>
           </datalist>
+
         <% end %>
       </div>
 
