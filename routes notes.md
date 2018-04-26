@@ -1,6 +1,6 @@
       Method Path                                        Controller           Accessibility
 --------------------------------------------------------------------------------------------
- [ ]  GET    /                                           static#home          public
+ [ ]  GET    /                                           welcome#home          public
  [X]  GET    /login(.:format)                            session#new          public
  [X]  POST   /sessions(.:format)                         session#create       public
  [X]  DELETE /logout(.:format)                           session#destroy      public
