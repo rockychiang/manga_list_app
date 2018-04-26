@@ -1,5 +1,11 @@
-<% if !!author.id %>
-  <%= link_to "Add Manga", new_author_manga_path(author), class: "btn btn-success pull-right" if current_user.admin %>
-<% else %>
-  <%= link_to "Add Manga", new_manga_path, class: "btn btn-success pull-right" if current_user.admin %>
+<% if current_user.admin %>
+  <% if !!author.id %>
+
+    <%= link_to "Add Manga", new_author_manga_path(author), class: "btn btn-success pull-right" %>
+
+  <% else %>
+
+    <%= link_to "Add Manga", new_manga_path, class: "btn btn-success pull-right" %>
+    
+  <% end %>
 <% end %>
