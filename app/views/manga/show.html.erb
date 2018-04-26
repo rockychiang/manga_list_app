@@ -6,13 +6,8 @@
 
 <div class="row">
 
-  <div class="col-sm-9">
-    <%= render '/collections/list_reviews', collections: @manga.collections %>
-    <%= render '/collections/review_form', user: current_user, collection: @collection %>
-  </div>
+  <div class="col-sm-3 container-fluid pull-right">
 
-  <div class="col-sm-3">
-    
     <p>
       <strong>Rating</strong><br />
       <%= average_rating(@manga) %>
@@ -51,4 +46,10 @@
     </p>
 
   </div>
+
+  <div class="col-sm-9 pull-left">
+    <%= render '/collections/list_reviews', collections: @manga.collections %>
+    <%= render '/collections/review_form', user: current_user, collection: @collection %>
+  </div>
+
 </div>
