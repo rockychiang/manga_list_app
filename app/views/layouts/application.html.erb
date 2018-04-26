@@ -12,31 +12,41 @@
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
+
         <div class="navbar-header">
           <%= link_to "ML", root_path, class: "navbar-brand" %>
         </div>
+
         <ul class="nav navbar-nav">
           <li><%= link_to "Manga List", manga_index_path %></li>
           <li><%= link_to "Author List", authors_path %></li>
         </ul>
+
         <div class="nav navbar-nav navbar-right">
           <% if logged_in? %>
+
             <%= link_to "Profile", user_path(current_user), class: "btn btn-default navbar-btn" %>
             <%= link_to "Log Out", logout_path, class: "btn btn-default navbar-btn", method: "delete" %>
+
           <% else %>
+
             <%= link_to "Sign Up", register_path, class: "btn btn-default navbar-btn" %>
             <%= link_to "Log In", login_path, class: "btn btn-default navbar-btn" %>
+
           <% end %>
         </div>
       </div>
     </nav>
+
     <div class="panel-body container">
       <%= yield %>
     </div>
+
     <footer class="page-footer small">
       <div class="container">
         <p class="center">&copy; 2018 Rocky Chiang. Manga List.</p>
       </div>
-    </div>
+    </footer>
+    
   </body>
 </html>
