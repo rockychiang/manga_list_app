@@ -5,8 +5,8 @@ class Manga < ApplicationRecord
   validates :title, presence: true
   accepts_nested_attributes_for :author
 
-  def self.popular
-
+  def self.popular(number=nil)
+    Manga.joins(:collections).group(:id).order('COUNT(manga_id) DESC').limit(number)
   end
 
   def self.alphabetical

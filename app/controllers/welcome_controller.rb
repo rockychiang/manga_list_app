@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def home
-    @manga = Manga.all
+    @manga = Manga.popular(9)
   end
 end
