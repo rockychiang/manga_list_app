@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     resources :collections, only: [:index, :create, :update, :destroy]
   end
 
-  resources :authors, only: [:index, :show]
+  resources :authors, only: [:index, :show] do
+    resources :manga, only: :new
+  end
+  
   resources :manga, except: :destroy
   post '/manga' => 'manga#create', as: 'mangas'
 end

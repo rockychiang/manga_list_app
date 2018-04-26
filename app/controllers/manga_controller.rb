@@ -4,6 +4,7 @@ class MangaController < ApplicationController
 
   def index
     @manga = Manga.all.alphabetical
+    @author = Author.new
   end
 
   def show
@@ -11,7 +12,7 @@ class MangaController < ApplicationController
   end
 
   def new
-    author = Author.new
+    author = Author.find_or_initialize_by(id: params[:author_id])
     @manga = author.mangas.build
   end
 

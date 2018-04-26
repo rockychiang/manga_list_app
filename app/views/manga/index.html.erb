@@ -5,9 +5,9 @@
   </div>
 
   <div class="col-sm-2">
-    <h2><%= render 'new_button' %></h2>
+    <h2><%= render 'new_button', author: @author %></h2>
   </div>
-  
+
 </div>
 
 <%= render 'manga/list_manga', mangas: @manga %>
