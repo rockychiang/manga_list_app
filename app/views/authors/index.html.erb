@@ -5,16 +5,23 @@
 </div>
 
 <div class="row">
+
   <% @authors.each do |author| %>
+
     <div class="col-sm-4 center">
       <div class="bordered">
+
         <h3><%= link_to author.name, author_path(author) %></h3>
+
         <ul class="list-group">
-          <% author.mangas.limit(3).each do |manga| %>
+          <% author.mangas.take(3).each do |manga| %>
             <li class="list-group-item"><%= link_to manga.title, manga_path(manga) %></li>
           <% end %>
         </ul>
+
       </div>
     </div>
+
   <% end %>
+
 </div>
