@@ -15,9 +15,9 @@
  [X]  GET    /authors(.:format)                          authors#index        public
  [X]  GET    /authors/:id(.:format)                      authors#show         public
  [X]  GET    /manga(.:format)                            manga#index          public
- [ ]  POST   /manga(.:format)                            manga#create         require_admin
- [ ]  GET    /manga/new(.:format)                        manga#new            require_admin
- [ ]  GET    /manga/:id/edit(.:format)                   manga#edit           require_admin
+ [X]  POST   /manga(.:format)                            manga#create         require_admin
+ [X]  GET    /manga/new(.:format)                        manga#new            require_admin
+ [X]  GET    /manga/:id/edit(.:format)                   manga#edit           require_admin
  [X]  GET    /manga/:id(.:format)                        manga#show           public
- [ ]  PATCH  /manga/:id(.:format)                        manga#update         require_admin
- [ ]  PUT    /manga/:id(.:format)                        manga#update         require_admin
+ [X]  PATCH  /manga/:id(.:format)                        manga#update         require_admin
+ [X]  PUT    /manga/:id(.:format)                        manga#update         require_admin

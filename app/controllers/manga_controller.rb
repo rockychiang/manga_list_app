@@ -11,7 +11,8 @@ class MangaController < ApplicationController
   end
 
   def new
-    @manga = Manga.new
+    author = Author.new
+    @manga = author.mangas.build
   end
 
   def create

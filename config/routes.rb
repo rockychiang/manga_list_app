@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   resources :authors, only: [:index, :show]
   resources :manga, except: :destroy
+  post '/manga' => 'manga#create', as: 'mangas'
 end
