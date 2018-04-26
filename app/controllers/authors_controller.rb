@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.all
+    @authors = Author.all.alphabetical
   end
 
   def show

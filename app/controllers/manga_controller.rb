@@ -3,7 +3,7 @@ class MangaController < ApplicationController
   before_action :set_manga, only: [:show, :edit, :update]
 
   def index
-    @manga = Manga.all
+    @manga = Manga.all.alphabetical
   end
 
   def show

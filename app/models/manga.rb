@@ -5,6 +5,14 @@ class Manga < ApplicationRecord
   validates :title, presence: true
   accepts_nested_attributes_for :author
 
+  def self.popular
+
+  end
+
+  def self.alphabetical
+    self.order(:title)
+  end
+
   def author_attributes=(author_attributes)
     a = Author.find_or_create_by(name: author_attributes[:name])
     self.author = a
