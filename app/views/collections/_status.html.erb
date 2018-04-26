@@ -1,22 +1,45 @@
 <div class="row">
   <div class="col-sm-8">
+
     <% if user == current_user %>
+
       <%= form_for [user, collection] do |f| %>
-        <%= f.select :status, ["Never Read", "Reading", "Finished"], {}, {value: collection.status, class: "form-control", onchange: 'this.form.submit();'} %>
+
+        <%= f.select :status,
+          ["Never Read", "Reading", "Finished"], {},
+          {value: collection.status,
+          class: "form-control",
+          onchange: 'this.form.submit();'}
+        %>
+
       <% end %>
+
     <% else %>
       <%= collection.status %>
     <% end %>
+
   </div>
+
   <% if collection.status == "Reading" %>
     <div class="col-sm-4">
+
       <% if user == current_user %>
+
         <%= form_for collection, url: user_collection_path(user, collection) do |f| %>
-          <%= f.text_field :last_read, class: "form-control", placeholder: "Chapter", onchange: 'this.form.submit();' %>
+
+          <%= f.text_field :last_read,
+            class: "form-control",
+            placeholder: "Chapter",
+            onchange: 'this.form.submit();'
+          %>
+
         <% end %>
+
       <% else %>
         Chapter <%= collection.last_read %>
       <% end %>
+
     </div>
   <% end %>
+
 </div>

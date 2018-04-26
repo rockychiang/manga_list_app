@@ -1,7 +1,10 @@
 <% if logged_in? %>
+
   <div class="row">
     <div class="col-sm-12">
+
       <h3>Review this Manga</h3>
+
       <%= form_for [user, collection] do |f| %>
 
         <% if !collection.id %>
@@ -23,6 +26,8 @@
         </div>
 
       <% end %>
+
     </div>
   </div>
+  
 <% end %>
