@@ -11,8 +11,8 @@ class Manga < ApplicationRecord
   end
 
   def years_active
-    started = start_date.to_s.to_date.strftime("%b %e, %Y")
-    !!end_date ? ended = end_date.to_s.to_date.strftime("%b %e, %Y") : ended = "Present"
+    started = start_date.strftime("%b %e, %Y")
+    !!end_date ? ended = end_date.strftime("%b %e, %Y") : ended = "Present"
     started + " - " + ended
   end
 end
