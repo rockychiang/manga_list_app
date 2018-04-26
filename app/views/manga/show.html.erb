@@ -12,6 +12,7 @@
   </div>
 
   <div class="col-sm-3">
+    
     <p>
       <strong>Rating</strong><br />
       <%= average_rating(@manga) %>
@@ -46,6 +47,7 @@
 
     <p class="center">
       <%= render '/collections/add_button', manga: @manga %>
+      <%= render 'edit_button', manga: @manga %>
     </p>
 
   </div>
