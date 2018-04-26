@@ -2,7 +2,7 @@ class Manga < ApplicationRecord
   has_many :collections
   has_many :users, through: :collections
   belongs_to :author
-  validates :title, presence: true
+  validates :title, :status, :start_date, presence: true
   accepts_nested_attributes_for :author
 
   def self.popular(number=nil)
