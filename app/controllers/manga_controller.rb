@@ -27,6 +27,11 @@ class MangaController < ApplicationController
   end
 
   def update
+    if @manga.update(manga_params)
+      redirect_to manga_path(@manga)
+    else
+      render :edit
+    end
   end
 
   private

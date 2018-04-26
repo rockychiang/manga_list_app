@@ -1,49 +1,55 @@
-<%= form_for manga, url: manga_index_path do |f| %>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <%= form_for manga do |f| %>
 
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control", placeholder: "Manga Title" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Manga Title" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :status %>
-    <%= f.select :status, ["On Going", "Completed", "On Hiatus", "Cancelled"], class: "form-control" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :status %>
+        <%= f.select :status, ["On Going", "Completed", "On Hiatus", "Cancelled"], class: "form-control" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :volumes %>
-    <%= f.text_field :volumes, class: "form-control", placeholder: "Leave blank if status is 'On Going' or 'On Hiatus'" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :volumes %>
+        <%= f.text_field :volumes, class: "form-control", placeholder: "Leave blank if status is 'On Going' or 'On Hiatus'" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :chapters %>
-    <%= f.text_field :chapters, class: "form-control", placeholder: "Leave blank if status is 'On Going' or 'On Hiatus'"  %>
-  </div>
+      <div class="form-group">
+        <%= f.label :chapters %>
+        <%= f.text_field :chapters, class: "form-control", placeholder: "Leave blank if status is 'On Going' or 'On Hiatus'"  %>
+      </div>
 
-  <div class="form-group">
-    <%= f.fields_for :author_attributes do |i| %>
-      <%= i.label :name, "Author Name" %>
-      <%= i.text_field :name, list: "authors_autocomplete", class: "form-control", placeholder: "Author's Name" %>
-      <datalist id="authors_autocomplete">
-        <% Author.all.each do |a| %>
-          <option value="<%= a.name %>">
+      <div class="form-group">
+        <%= f.fields_for :author_attributes do |i| %>
+          <%= i.label :name, "Author Name" %>
+          <%= i.text_field :name, list: "authors_autocomplete", class: "form-control", placeholder: "Author's Name" %>
+          <datalist id="authors_autocomplete">
+            <% Author.all.each do |a| %>
+              <option value="<%= a.name %>">
+            <% end %>
+          </datalist>
         <% end %>
-      </datalist>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :start_date, "Release Date" %>
+        <%= f.date_field :start_date, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :end_date, "End Date (Leave blank if 'On Going' or 'On Hiatus')" %>
+        <%= f.date_field :end_date, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit nil, class: "btn btn-primary" %>
+      </div>
+
     <% end %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :start_date, "Release Date" %>
-    <%= f.date_field :start_date, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :end_date, "End Date (Leave blank if 'On Going' or 'On Hiatus')" %>
-    <%= f.date_field :end_date, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit nil, class: "btn btn-primary" %>
-  </div>
-
-<% end %>
+  <div class="col-sm-3"></div>
+</div>
