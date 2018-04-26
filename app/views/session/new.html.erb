@@ -2,26 +2,10 @@
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
 
-    <p class="center">Login with <%= render '/session/fb_button' %></button></p>
+    <p class="center">Login with <%= render '/session/fb_button' %></p>
     <p class="center">Or</p>
+    <%= render '/session/login_form' %>
 
-    <%= form_tag '/sessions' do %>
-
-      <div class="form-group">
-        <%= label_tag :email, "Email: " %>
-        <%= email_field_tag :email, nil, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= label_tag :password, "Password: " %>
-        <%= password_field_tag :password, nil, class: "form-control" %>
-      </div>
-
-      <div class="actions">
-        <%= submit_tag "Login", class: "btn btn-primary"  %>
-      </div>
-
-    <% end %>
   </div>
   <div class="col-sm-4"></div>
 </div>

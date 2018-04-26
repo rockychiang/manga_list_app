@@ -1,38 +1,19 @@
 <% if @user.errors.any? %>
+
   <div id="error_explanation">
     <p><%= @user.errors.full_messages.join(". ") %>.</p>
   </div>
+
 <% end %>
 
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
 
-    <p class="center">Sign Up with <%= render '/session/fb_button' %></button></p>
+    <p class="center">Sign Up with <%= render '/session/fb_button' %></p>
     <p class="center">Or</p>
+    <%= render '/users/registration_form', user: @user %>
 
-    <%= form_for @user do |f| %>
-
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign Up", class: "btn btn-primary" %>
-      </div>
-
-    <% end %>
   </div>
   <div class="col-sm-4"></div>
 </div>
