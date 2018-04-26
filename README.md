@@ -8,7 +8,7 @@ To install this app, fork and clone the repo to your local folder and then run b
 
 ## Usage
 
-TODO
+https://youtu.be/t63x5zyL8Hg
 
 ## Contributing
 
