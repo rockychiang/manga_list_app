@@ -2,6 +2,10 @@ class CollectionsController < ApplicationController
   before_action :require_login
   before_action :owner?, only: [:update, :destroy]
 
+  def index
+    @user = User.find(params[:user_id])
+  end
+
   def create
     Collection.create(collection_params)
     redirect_to request.referer
@@ -14,7 +18,7 @@ class CollectionsController < ApplicationController
 
   def destroy
     @collection.delete
-    redirect_to user_path(current_user)
+    redirect_to user_collections_path(current_user)
   end
 
   private

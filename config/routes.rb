@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get '/register' => 'users#new'
   get '/auth/facebook/callback' => 'session#facebook'
 
-  resources :users, only: [:create, :show] do
-    resources :collections, only: [:create, :update, :destroy]
+  resources :users, only: :create do
+    resources :collections, only: [:index, :create, :update, :destroy]
   end
 
   resources :authors, only: [:index, :show]
