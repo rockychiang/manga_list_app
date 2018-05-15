@@ -36,6 +36,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+# Use AMS to handle AJAX request
+gem 'active_model_serializers'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
