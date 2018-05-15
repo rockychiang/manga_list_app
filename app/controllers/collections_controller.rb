@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
     @user = User.find(params[:user_id])
     respond_to do |f|
       f.html { render :index }
-      f.json { render json: @user }
+      f.json { render json: @user.collections }
     end
   end
 
