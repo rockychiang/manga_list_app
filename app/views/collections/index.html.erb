@@ -39,8 +39,17 @@
     <h2><%= @user.name %>'s Reviews</h2>
     <div id="reviews" class="row">
       <div class="col-sm-12">
-        <a href="#reviews" class="btn btn-default">Show Reviews by <%= @user.name %></a>
+        <a href="#reviews" id="js-show-reviews" class="btn btn-default" data-id="<%= @user.id %>">Show Reviews</a>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('#js-show-reviews').on('click', function(e) {
+      $('#reviews').html("");
+      e.preventDefault();
+    });
+  });
+</script>
