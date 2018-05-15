@@ -48,8 +48,20 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $('#js-show-reviews').on('click', function(e) {
-      $('#reviews').html("");
       e.preventDefault();
+      $('#reviews').html("");
+      $.get('/users/<%= @user.id %>/collections.json', function(collections) {
+        collections.forEach(function(collection) {
+          if (collection.review != null) {
+            let html = `<div class='col-sm-4'>`;
+            html += `<p>${collection.manga.title}</p>`;
+            html += `<p>${collection.rating}</p>`;
+            html += `<p>${collection.review}</p>`;
+            html += `</div>`;
+            $('#reviews').append(html);
+          };
+        });
+      });
     });
   });
 </script>
