@@ -1,4 +1,4 @@
-$( () => {
+$(document).on('turbolinks:load', () => {
   $('#js-show-reviews').on('click', (e) => {
     e.preventDefault();
     const id = $('#js-show-reviews').data('id');
