@@ -11,8 +11,11 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    Collection.create(collection_params)
-    redirect_to request.referer
+    collection = Collection.create(collection_params)
+    respond_to do |f|
+      f.html { redirect_to request.referer }
+      f.json { render json: collection }
+    end
   end
 
   def update
