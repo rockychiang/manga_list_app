@@ -5,7 +5,7 @@
 
       <h3>Review this Manga</h3>
 
-      <%= form_for [user, collection] do |f| %>
+      <%= form_for [user, collection], html: { id: "reviewForm" } do |f| %>
 
         <% if !collection.id %>
           <%= f.hidden_field :user_id %>
@@ -22,12 +22,12 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Submit", class: "btn btn-primary" %>
+          <%= f.submit "Submit", class: "btn btn-primary", id: "reviewSubmit" %>
         </div>
 
       <% end %>
 
     </div>
   </div>
-  
+
 <% end %>
