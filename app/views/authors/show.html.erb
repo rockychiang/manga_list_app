@@ -1,6 +1,13 @@
 <div class="row">
+  <div class="sol-sm-12">
+    <a href="#" id="js-previous-author" class="pull-left" data-id="<%= @author.id %>">&#8592; Previous Author</a>
+    <a href="#" id="js-next-author" class="pull-right" data-id="<%= @author.id %>">Next Author &#8594;</a>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-sm-10">
-    <h2><%= @author.name %></h2>
+    <h2 id="authorName"><%= @author.name %></h2>
   </div>
 
   <div class="col-sm-2">
