@@ -27,5 +27,6 @@ $(document).on('turbolinks:load', () => {
       const html = template(manga);
       $('#mangaList').append(html);
     });
+    $('.mangaAuthor').attr("href", `/authors/${author.id}`).text(author.name);
   };
 });
