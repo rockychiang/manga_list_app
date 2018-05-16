@@ -1,5 +1,6 @@
 class Collection {
   constructor(attributes) {
+    this.id = attributes.id;
     this.review = attributes.review;
     this.rating = attributes.rating;
     this.status = attributes.status;
@@ -32,9 +33,16 @@ $(document).on('turbolinks:load', () => {
     })
     .success(function(json) {
       let collection = new Collection(json);
-      const html = collection.renderReview();
+      const $review = $(`#${collection.id}-review`);
+      const $rating = $(`#${collection.id}-rating`);
 
-      $('#reviews').append(html);
+      if ($review.length == 0 && $rating.length == 0) {
+        const html = collection.renderReview();
+        $('#reviews').prepend(html);
+      } else {
+        $review.text(collection.review);
+        $rating.text(collection.rating);
+      };
     })
     .error(function(resp) {
       console.log("Mayday, mayday", resp);
