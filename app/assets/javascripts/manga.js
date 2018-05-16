@@ -20,10 +20,16 @@ $(document).on('turbolinks:load', () => {
   $('form#reviewForm').on('submit', function(e) {
     e.preventDefault();
     const $form = $(this);
-    const action = $form.attr('action');
+    const path = $form.attr('action');
     const params = $form.serialize();
+    const method = $form.children('input[name=_method]').attr('value') || 'post';
 
-    $.post(action, params, null, 'json')
+    $.ajax({
+      method: method,
+      url: path,
+      data: params,
+      dataType: 'json'
+    })
     .success(function(json) {
       let collection = new Collection(json);
       const html = collection.renderReview();

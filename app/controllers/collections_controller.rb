@@ -20,7 +20,10 @@ class CollectionsController < ApplicationController
 
   def update
     @collection.update(collection_params)
-    redirect_to request.referer
+    respond_to do |f|
+      f.html { redirect_to request.referer }
+      f.json { render json: @collection }
+    end
   end
 
   def destroy
