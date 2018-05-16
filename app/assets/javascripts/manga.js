@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', () => {
-  $('#reviewForm').submit( (e)  => {
+  $('form#reviewForm').on('submit', function(e) {
     e.preventDefault();
-    console.log("Hijacked")
   });
 });

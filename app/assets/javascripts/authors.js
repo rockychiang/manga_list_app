@@ -1,15 +1,15 @@
 $(document).on('turbolinks:load', () => {
-  $('#js-next-author').on('click', (e) => {
+  $('#js-next-author').on('click', function(e) {
     e.preventDefault();
-    const nextId = parseInt($('#js-next-author').data('id')) + 1;
+    const nextId = parseInt($(this).data('id')) + 1;
     $.get(`/authors/${nextId}`, (author) => {
       change(author);
     }, 'json');
   });
 
-  $('#js-previous-author').on('click', (e) => {
+  $('#js-previous-author').on('click', function(e) {
     e.preventDefault();
-    const prevId = parseInt($('#js-previous-author').data('id')) - 1;
+    const prevId = parseInt($(this).data('id')) - 1;
     $.get(`/authors/${prevId}`, (author) => {
       change(author);
     }, 'json');

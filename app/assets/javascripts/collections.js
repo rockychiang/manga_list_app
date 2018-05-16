@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', () => {
-  $('#js-show-reviews').on('click', (e) => {
+  $('#js-show-reviews').on('click', function(e) {
     e.preventDefault();
-    const id = $('#js-show-reviews').data('id');
+    const id = $(this).data('id');
     $('#reviews').html("");
     $.get(`/users/${id}/collections`, (collections) => {
       collections.forEach(collection => {
