@@ -1,3 +1,21 @@
+class Collection {
+  constructor(attributes) {
+    this.review = attributes.review;
+    this.rating = attributes.rating;
+    this.status = attributes.status;
+    this.last_read = attributes.last_read;
+  };
+
+  templateSource() {
+    return $("#review-template").html();
+  }
+
+  renderReview() {
+    const template = Handlebars.compile(this.templateSource());
+    return template(this);
+  };
+};
+
 $(document).on('turbolinks:load', () => {
   $('form#reviewForm').on('submit', function(e) {
     e.preventDefault();
@@ -7,13 +25,13 @@ $(document).on('turbolinks:load', () => {
 
     $.post(action, params, null, 'json')
     .success(function(json) {
-      const source = $("#review-template").html();
-      const template = Handlebars.compile(source);
-      const html = template(json);
+      let collection = new Collection(json);
+      const html = collection.renderReview();
+
       $('#reviews').append(html);
     })
     .error(function(resp) {
-      console.log("That's not good", resp);
+      console.log("Mayday, mayday", resp);
     });
   });
 });

@@ -19,6 +19,6 @@
  [X]  POST   /manga(.:format)                            manga#create         require_admin
  [X]  GET    /manga/new(.:format)                        manga#new            require_admin
  [.]  GET    /manga/:id/edit(.:format)                   manga#edit           require_admin   AMS
- [.]  GET    /manga/:id(.:format)                        manga#show           public          AMS
+ [x]  GET    /manga/:id(.:format)                        manga#show           public
  [.]  PATCH  /manga/:id(.:format)                        manga#update         require_admin   AMS
  [.]  PUT    /manga/:id(.:format)                        manga#update         require_admin   AMS
