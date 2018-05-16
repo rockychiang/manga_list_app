@@ -25,6 +25,11 @@ Collection.changeAddButton = (id) => {
 };
 
 $(document).on('turbolinks:load', () => {
+  $('.addToCollection').on('submit', function(e) {
+    e.preventDefault();
+    console.log('Hijacked the button');
+  });
+
   $('form#reviewForm').on('submit', function(e) {
     e.preventDefault();
     const $form = $(this);

@@ -5,7 +5,7 @@
       <button class="btn btn-default">In Collection</button>
     <% else %>
 
-      <%= form_for [current_user, current_user.collections.build] do |f| %>
+      <%= form_for [current_user, current_user.collections.build], html: {class: "addToCollection"} do |f| %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :manga_id, value: manga.id %>
         <%= f.submit "Add to Collection", class: "btn btn-primary" %>
