@@ -1,6 +1,7 @@
 class Collection {
   constructor(attributes) {
     this.id = attributes.id;
+    this.manga_id = attributes.manga.id;
     this.review = attributes.review;
     this.rating = attributes.rating;
     this.status = attributes.status;
@@ -15,6 +16,12 @@ class Collection {
     const template = Handlebars.compile(this.templateSource());
     return template(this);
   };
+};
+
+Collection.changeAddButton = (id) => {
+  const $button = $(`#${id}-button`);
+  const button = '<button class="btn btn-default">In Collection</button>';
+  $button.html(button);
 };
 
 $(document).on('turbolinks:load', () => {
@@ -38,7 +45,8 @@ $(document).on('turbolinks:load', () => {
 
       if ($review.length == 0 && $rating.length == 0) {
         const html = collection.renderReview();
-        $('#reviews').prepend(html);
+        $('#reviews').append(html);
+        Collection.changeAddButton(collection.manga_id);
       } else {
         $review.text(collection.review);
         $rating.text(collection.rating);

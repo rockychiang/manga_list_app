@@ -1,14 +1,16 @@
 <% if logged_in? %>
+  <div id="<%= manga.id %>-button">
 
-  <% if current_user.mangas.include?(manga) %>
-    <button class="btn btn-default">In Collection</button>
-  <% else %>
+    <% if current_user.mangas.include?(manga) %>
+      <button class="btn btn-default">In Collection</button>
+    <% else %>
 
-    <%= form_for [current_user, current_user.collections.build] do |f| %>
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :manga_id, value: manga.id %>
-      <%= f.submit "Add to Collection", class: "btn btn-primary" %>
+      <%= form_for [current_user, current_user.collections.build] do |f| %>
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :manga_id, value: manga.id %>
+        <%= f.submit "Add to Collection", class: "btn btn-primary" %>
+      <% end %>
+
     <% end %>
-
-  <% end %>
+  </div>
 <% end %>
