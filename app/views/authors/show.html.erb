@@ -16,3 +16,12 @@
 </div>
 
 <%= render 'manga/list_manga', mangas: @author.mangas %>
+
+<script id="manga-template" type="text/x-handlebars-template">
+  <div class="col-sm-4 center">
+    <div class="bordered">
+      <h3><a href="/manga/{{id}}">{{title}}</a></h3>
+      <p>Status: {{status}}</p>
+    </div>
+  </div>
+</script>
