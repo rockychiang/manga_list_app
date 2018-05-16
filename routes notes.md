@@ -7,8 +7,8 @@
  [X]  GET    /auth/facebook/callback(.:format)           session#facebook     public
  [X]  GET    /register(.:format)                         users#new            public
  [X]  POST   /users(.:format)                            users#create         public
- [.]  GET    /users/:user_id/collections(.:format)       collections#index    require_login   AMS
- [.]  POST   /users/:user_id/collections(.:format)       collections#create   require_login   AMS
+ [X]  GET    /users/:user_id/collections(.:format)       collections#index    require_login
+ [X]  POST   /users/:user_id/collections(.:format)       collections#create   require_login
  [.]  PATCH  /users/:user_id/collections/:id(.:format)   collections#update   owner?          AMS
  [.]  PUT    /users/:user_id/collections/:id(.:format)   collections#update   owner?          AMS
  [.]  DELETE /users/:user_id/collections/:id(.:format)   collections#destroy  owner?          AMS
