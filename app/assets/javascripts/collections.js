@@ -1,25 +1,22 @@
 class Collection {
   constructor(attributes) {
     this.id = attributes.id;
-    this.manga_id = attributes.manga.id;
+    this.manga = {id: attributes.manga.id, title: attributes.manga.title};
     this.review = attributes.review;
     this.rating = attributes.rating;
     this.status = attributes.status;
     this.last_read = attributes.last_read;
   };
 
-  templateSource() {
-    return $("#review-template").html();
-  }
-
-  renderReview() {
-    const template = Handlebars.compile(this.templateSource());
+  renderHtml(source) {
+    const templateSource = $(source).html();
+    const template = Handlebars.compile(templateSource);
     return template(this);
   };
 };
 
 Collection.changeAddButton = (collection) => {
-  const $button = $(`#${collection.manga_id}-button`);
+  const $button = $(`#${collection.manga.id}-button`);
   const button = '<button class="btn btn-default">In Collection</button>';
   $button.html(button);
 };
@@ -40,10 +37,8 @@ $(document).on('turbolinks:load', () => {
       let collection = new Collection(json);
       const $reading = $(`#row-${collection.id}`).find('.reading');
       if (collection.status == "Reading") {
-        const source = $("#reading-template").html();
-        const template = Handlebars.compile(source);
-        const html = template(collection);
-        $reading.append(html);
+        const html = collection.renderHtml("#reading-template");
+        $reading.html(html);
       } else {
         $reading.html("");
       };
@@ -86,7 +81,7 @@ $(document).on('turbolinks:load', () => {
       const $rating = $(`#${collection.id}-rating`);
 
       if ($review.length == 0 && $rating.length == 0) {
-        const html = collection.renderReview();
+        const html = collection.renderHtml("#review-template");
         $('#reviews').append(html);
         Collection.changeAddButton(collection);
       } else {
@@ -104,11 +99,10 @@ $(document).on('turbolinks:load', () => {
     const id = $(this).data('id');
     $('#reviews').html("");
     $.get(`/users/${id}/collections`, (collections) => {
-      collections.forEach(collection => {
-        if (collection.review != null) {
-          const source = $("#review-template").html();
-          const template = Handlebars.compile(source);
-          const html = template(collection);
+      collections.forEach(json => {
+        if (json.review != null) {
+          let collection = new Collection(json);
+          const html = collection.renderHtml("#review-template");
           $('#reviews').append(html);
         };
       });
