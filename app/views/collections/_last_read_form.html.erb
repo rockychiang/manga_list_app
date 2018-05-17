@@ -1,11 +1,11 @@
 <% if user == current_user %>
 
   <%= form_for collection, url: user_collection_path(user, collection) do |f| %>
-    <%= f.text_field :last_read, class: "form-control", placeholder: "Chapter", onchange: 'this.form.submit();' %>
+    <%= f.text_field :last_read, class: "form-control changeReading", placeholder: "Chapter" %>
   <% end %>
 
 <% else %>
 
   Chapter <%= collection.last_read %>
-  
+
 <% end %>

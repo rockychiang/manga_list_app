@@ -25,6 +25,10 @@ Collection.changeAddButton = (id) => {
 };
 
 $(document).on('turbolinks:load', () => {
+  $('tr').on('change', '.changeReading',  function(e) {
+    console.log('hijacked')
+  });
+
   $('.changeStatus').on('change', function(e) {
     const $form = $(this).parent();
     const path = $form.attr('action');
