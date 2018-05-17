@@ -18,8 +18,8 @@ class Collection {
   };
 };
 
-Collection.changeAddButton = (id) => {
-  const $button = $(`#${id}-button`);
+Collection.changeAddButton = (collection) => {
+  const $button = $(`#${collection.manga_id}-button`);
   const button = '<button class="btn btn-default">In Collection</button>';
   $button.html(button);
 };
@@ -69,7 +69,7 @@ $(document).on('turbolinks:load', () => {
 
     $.post(path, params, function(json) {
       let collection = new Collection(json);
-      Collection.changeAddButton(collection.manga_id);
+      Collection.changeAddButton(collection);
     }, 'json');
   });
 
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', () => {
       if ($review.length == 0 && $rating.length == 0) {
         const html = collection.renderReview();
         $('#reviews').append(html);
-        Collection.changeAddButton(collection.manga_id);
+        Collection.changeAddButton(collection);
       } else {
         $review.text(collection.review);
         $rating.text(collection.rating);
