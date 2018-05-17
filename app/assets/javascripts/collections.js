@@ -26,7 +26,15 @@ Collection.changeAddButton = (id) => {
 
 $(document).on('turbolinks:load', () => {
   $('tr').on('change', '.changeReading',  function(e) {
-    console.log('hijacked')
+    const $form = $(this).parent();
+    const path = $form.attr('action');
+    const params = $form.serialize();
+    $.ajax({
+      method: 'patch',
+      url: path,
+      data: params,
+      dataType: 'json'
+    })
   });
 
   $('.changeStatus').on('change', function(e) {
