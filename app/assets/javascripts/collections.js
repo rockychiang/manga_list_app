@@ -39,12 +39,37 @@ class Form {
 };
 
 $(document).on('turbolinks:load', () => {
+  addButtonListener();
+  deleteButtonListener();
+  statusFormListener();
+  readingFormListener();
+  reviewFormListener();
+  showReviewListener();
+});
 
-  $('tr').on('change', '.changeReading',  function(e) {
-    let form = new Form($(this).parent());
-    form.sendAjaxRequest()
+function addButtonListener() {
+  $('.addToCollection').on('submit', function(e) {
+    e.preventDefault();
+    let form = new Form($(this));
+    form.sendAjaxRequest().success(function(json) {
+      let collection = new Collection(json);
+      collection.changeAddButton();
+    });
   });
+};
 
+function deleteButtonListener() {
+  $('.deleteCollection').on('submit', function(e) {
+    e.preventDefault();
+    let form = new Form($(this));
+    form.sendAjaxRequest().success(function(json) {
+      let collection = new Collection(json);
+      $(`tr#row-${collection.id}`).remove();
+    });
+  });
+};
+
+function statusFormListener() {
   $('.changeStatus').on('change', function(e) {
     let form = new Form($(this).parent());
     form.sendAjaxRequest().success(function(json) {
@@ -58,26 +83,17 @@ $(document).on('turbolinks:load', () => {
       };
     });
   });
+};
 
-  $('.deleteCollection').on('submit', function(e) {
-    e.preventDefault();
-    let form = new Form($(this));
-    form.sendAjaxRequest().success(function(json) {
-      let collection = new Collection(json);
-      $(`tr#row-${collection.id}`).remove();
-    });
+function readingFormListener() {
+  $('tr').on('change', '.changeReading',  function(e) {
+    let form = new Form($(this).parent());
+    form.sendAjaxRequest()
   });
+};
 
-  $('.addToCollection').on('submit', function(e) {
-    e.preventDefault();
-    let form = new Form($(this));
-    form.sendAjaxRequest().success(function(json) {
-      let collection = new Collection(json);
-      collection.changeAddButton();
-    });
-  });
-
-  $('form#reviewForm').on('submit', function(e) {
+function reviewFormListener() {
+  $('#reviewForm').on('submit', function(e) {
     e.preventDefault();
     let form = new Form($(this));
     form.sendAjaxRequest().success(function(json) {
@@ -98,7 +114,9 @@ $(document).on('turbolinks:load', () => {
       console.log("Mayday, mayday", resp);
     });
   });
+};
 
+function showReviewListener() {
   $('#js-show-reviews').on('click', function(e) {
     e.preventDefault();
     const id = $(this).data('id');
@@ -113,4 +131,4 @@ $(document).on('turbolinks:load', () => {
       });
     }, 'json');
   });
-});
+};
