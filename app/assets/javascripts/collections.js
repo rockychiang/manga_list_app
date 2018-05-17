@@ -13,6 +13,12 @@ class Collection {
     const template = Handlebars.compile(templateSource);
     return template(this);
   };
+
+  changeAddButton() {
+    const $button = $(`#${this.manga.id}-button`);
+    const button = '<button class="btn btn-default">In Collection</button>';
+    $button.html(button);
+  };
 };
 
 class Form {
@@ -30,12 +36,6 @@ class Form {
       dataType: 'json'
     });
   };
-};
-
-Collection.changeAddButton = (collection) => {
-  const $button = $(`#${collection.manga.id}-button`);
-  const button = '<button class="btn btn-default">In Collection</button>';
-  $button.html(button);
 };
 
 $(document).on('turbolinks:load', () => {
@@ -73,7 +73,7 @@ $(document).on('turbolinks:load', () => {
     let form = new Form($(this));
     form.sendAjaxRequest().success(function(json) {
       let collection = new Collection(json);
-      Collection.changeAddButton(collection);
+      collection.changeAddButton();
     });
   });
 
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', () => {
       if ($review.length == 0 && $rating.length == 0) {
         const html = collection.renderHtml("#review-template");
         $('#reviews').append(html);
-        Collection.changeAddButton(collection);
+        collection.changeAddButton();
       } else {
         $review.text(collection.review);
         $rating.text(collection.rating);
@@ -114,12 +114,3 @@ $(document).on('turbolinks:load', () => {
     }, 'json');
   });
 });
-
-function sendAjaxRequest(method, path, params) {
-  return $.ajax({
-    method: method,
-    url: path,
-    data: params,
-    dataType: 'json'
-  });
-};
