@@ -15,6 +15,23 @@ class Collection {
   };
 };
 
+class Form {
+  constructor(form) {
+    this.path = form.attr('action');
+    this.params = form.serialize();
+    this.method = form.children('input[name=_method]').attr('value') || 'post';
+  };
+
+  sendAjaxRequest() {
+    return $.ajax({
+      method: this.method,
+      url: this.path,
+      data: this.params,
+      dataType: 'json'
+    });
+  };
+};
+
 Collection.changeAddButton = (collection) => {
   const $button = $(`#${collection.manga.id}-button`);
   const button = '<button class="btn btn-default">In Collection</button>';
@@ -22,18 +39,15 @@ Collection.changeAddButton = (collection) => {
 };
 
 $(document).on('turbolinks:load', () => {
+
   $('tr').on('change', '.changeReading',  function(e) {
-    const $form = $(this).parent();
-    const path = $form.attr('action');
-    const params = $form.serialize();
-    sendAjaxRequest('patch', path, params)
+    let form = new Form($(this).parent());
+    form.sendAjaxRequest()
   });
 
   $('.changeStatus').on('change', function(e) {
-    const $form = $(this).parent();
-    const path = $form.attr('action');
-    const params = $form.serialize();
-    sendAjaxRequest('patch', path, params).success(function(json) {
+    let form = new Form($(this).parent());
+    form.sendAjaxRequest().success(function(json) {
       let collection = new Collection(json);
       const $reading = $(`#row-${collection.id}`).find('.reading');
       if (collection.status == "Reading") {
@@ -47,10 +61,8 @@ $(document).on('turbolinks:load', () => {
 
   $('.deleteCollection').on('submit', function(e) {
     e.preventDefault();
-    const $form = $(this);
-    const path = $form.attr('action');
-    const params = $form.serialize();
-    sendAjaxRequest('delete', path, params).success(function(json) {
+    let form = new Form($(this));
+    form.sendAjaxRequest().success(function(json) {
       let collection = new Collection(json);
       $(`tr#row-${collection.id}`).remove();
     });
@@ -58,24 +70,17 @@ $(document).on('turbolinks:load', () => {
 
   $('.addToCollection').on('submit', function(e) {
     e.preventDefault();
-    const $form = $(this);
-    const path = $form.attr('action');
-    const params = $form.serialize();
-
-    $.post(path, params, function(json) {
+    let form = new Form($(this));
+    form.sendAjaxRequest().success(function(json) {
       let collection = new Collection(json);
       Collection.changeAddButton(collection);
-    }, 'json');
+    });
   });
 
   $('form#reviewForm').on('submit', function(e) {
     e.preventDefault();
-    const $form = $(this);
-    const path = $form.attr('action');
-    const params = $form.serialize();
-    const method = $form.children('input[name=_method]').attr('value') || 'post';
-
-    sendAjaxRequest(method, path, params).success(function(json) {
+    let form = new Form($(this));
+    form.sendAjaxRequest().success(function(json) {
       let collection = new Collection(json);
       const $review = $(`#${collection.id}-review`);
       const $rating = $(`#${collection.id}-rating`);
