@@ -12,26 +12,17 @@ class CollectionsController < ApplicationController
 
   def create
     collection = Collection.create(collection_params)
-    respond_to do |f|
-      f.html { redirect_to request.referer }
-      f.json { render json: collection }
-    end
+    render json: collection
   end
 
   def update
     @collection.update(collection_params)
-    respond_to do |f|
-      f.html { redirect_to request.referer }
-      f.json { render json: @collection }
-    end
+    render json: @collection
   end
 
   def destroy
     @collection.delete
-    respond_to do |f|
-      f.html { redirect_to user_collections_path(current_user) }
-      f.json { render json: @collection }
-    end
+    render json: @collection
   end
 
   private
