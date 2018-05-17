@@ -29,25 +29,14 @@ $(document).on('turbolinks:load', () => {
     const $form = $(this).parent();
     const path = $form.attr('action');
     const params = $form.serialize();
-    $.ajax({
-      method: 'patch',
-      url: path,
-      data: params,
-      dataType: 'json'
-    })
+    sendAjaxRequest('patch', path, params)
   });
 
   $('.changeStatus').on('change', function(e) {
     const $form = $(this).parent();
     const path = $form.attr('action');
     const params = $form.serialize();
-    $.ajax({
-      method: 'patch',
-      url: path,
-      data: params,
-      dataType: 'json'
-    })
-    .success(function(json) {
+    sendAjaxRequest('patch', path, params).success(function(json) {
       let collection = new Collection(json);
       const $reading = $(`#row-${collection.id}`).find('.reading');
       if (collection.status == "Reading") {
@@ -66,13 +55,7 @@ $(document).on('turbolinks:load', () => {
     const $form = $(this);
     const path = $form.attr('action');
     const params = $form.serialize();
-    $.ajax({
-      method: 'delete',
-      url: path,
-      data: params,
-      dataType: 'json'
-    })
-    .success(function(json) {
+    sendAjaxRequest('delete', path, params).success(function(json) {
       let collection = new Collection(json);
       $(`tr#row-${collection.id}`).remove();
     });
@@ -97,13 +80,7 @@ $(document).on('turbolinks:load', () => {
     const params = $form.serialize();
     const method = $form.children('input[name=_method]').attr('value') || 'post';
 
-    $.ajax({
-      method: method,
-      url: path,
-      data: params,
-      dataType: 'json'
-    })
-    .success(function(json) {
+    sendAjaxRequest(method, path, params).success(function(json) {
       let collection = new Collection(json);
       const $review = $(`#${collection.id}-review`);
       const $rating = $(`#${collection.id}-rating`);
@@ -121,9 +98,7 @@ $(document).on('turbolinks:load', () => {
       console.log("Mayday, mayday", resp);
     });
   });
-});
 
-$(document).on('turbolinks:load', () => {
   $('#js-show-reviews').on('click', function(e) {
     e.preventDefault();
     const id = $(this).data('id');
@@ -140,3 +115,12 @@ $(document).on('turbolinks:load', () => {
     }, 'json');
   });
 });
+
+function sendAjaxRequest(method, path, params) {
+  return $.ajax({
+    method: method,
+    url: path,
+    data: params,
+    dataType: 'json'
+  });
+};
