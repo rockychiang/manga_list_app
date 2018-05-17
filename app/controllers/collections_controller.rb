@@ -28,7 +28,10 @@ class CollectionsController < ApplicationController
 
   def destroy
     @collection.delete
-    redirect_to user_collections_path(current_user)
+    respond_to do |f|
+      f.html { redirect_to user_collections_path(current_user) }
+      f.json { render json: @collection }
+    end
   end
 
   private
