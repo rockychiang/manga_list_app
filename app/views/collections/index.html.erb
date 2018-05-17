@@ -52,3 +52,12 @@
     <p>{{review}}</p>
   </div>
 </script>
+
+<script id="reading-template" type="text/x-handlebars-template">
+  <form class="edit_collection" id="edit_collection_{{id}}" action="/users/<%= current_user.id %>/collections/{{id}}" accept-charset="UTF-8" method="post">
+    <input name="utf8" type="hidden" value="✓">
+    <input type="hidden" name="_method" value="patch">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input class="form-control" placeholder="Chapter" type="text" value="{{last_read}}" name="collection[last_read]" id="collection_last_read">
+  </form>
+</script>

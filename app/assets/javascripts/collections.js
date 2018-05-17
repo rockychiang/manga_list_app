@@ -37,6 +37,15 @@ $(document).on('turbolinks:load', () => {
     })
     .success(function(json) {
       let collection = new Collection(json);
+      const $reading = $(`#row-${collection.id}`).find('.reading');
+      if (collection.status == "Reading") {
+        const source = $("#reading-template").html();
+        const template = Handlebars.compile(source);
+        const html = template(collection);
+        $reading.append(html);
+      } else {
+        $reading.html("");
+      };
     });
   });
 
