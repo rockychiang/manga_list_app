@@ -25,6 +25,21 @@ Collection.changeAddButton = (id) => {
 };
 
 $(document).on('turbolinks:load', () => {
+  $('.changeStatus').on('change', function(e) {
+    const $form = $(this).parent();
+    const path = $form.attr('action');
+    const params = $form.serialize();
+    $.ajax({
+      method: 'patch',
+      url: path,
+      data: params,
+      dataType: 'json'
+    })
+    .success(function(json) {
+      let collection = new Collection(json);
+    });
+  });
+
   $('.deleteCollection').on('submit', function(e) {
     e.preventDefault();
     const $form = $(this);
