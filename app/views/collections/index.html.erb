@@ -17,7 +17,7 @@
       </tr>
 
       <% @user.collections.each do |collection| %>
-        <tr>
+        <tr id="row-<%= collection.id %>">
 
           <td><%= link_to collection.manga.title, manga_path(collection.manga) %></td>
           <td><%= average_rating(collection.manga) %></td>

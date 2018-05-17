@@ -25,6 +25,11 @@ Collection.changeAddButton = (id) => {
 };
 
 $(document).on('turbolinks:load', () => {
+  $('.deleteCollection').on('submit', function(e) {
+    e.preventDefault();
+    console.log('hijacked')
+  });
+
   $('.addToCollection').on('submit', function(e) {
     e.preventDefault();
     const $form = $(this);

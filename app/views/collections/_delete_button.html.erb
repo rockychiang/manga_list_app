@@ -1,4 +1,5 @@
 <%= button_to "Delete", user_collection_path(user, collection),
+  form_class: 'deleteCollection', 
   method: :delete,
   class: "btn btn-danger pull-right",
   data: {confirm: "Are you sure?"}
