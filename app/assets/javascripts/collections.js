@@ -27,7 +27,14 @@ Collection.changeAddButton = (id) => {
 $(document).on('turbolinks:load', () => {
   $('.addToCollection').on('submit', function(e) {
     e.preventDefault();
-    console.log('Hijacked the button');
+    const $form = $(this);
+    const path = $form.attr('action');
+    const params = $form.serialize();
+
+    $.post(path, params, function(json) {
+      let collection = new Collection(json);
+      Collection.changeAddButton(collection.manga_id);
+    }, 'json');
   });
 
   $('form#reviewForm').on('submit', function(e) {
